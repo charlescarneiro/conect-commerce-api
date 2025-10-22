@@ -26,7 +26,7 @@ app.get('/', (req,res)=>res.send('API Conect Commerce ativa.'));
 app.post('/auth/register-user',(req,res)=>{
   const {name,email,password,city}=req.body;
   if(!name||!email||!password)return res.json({ok:false,error:'Campos obrigatórios faltando'});
-  const info=db.prepare('INSERT INTO users (name,email,password,city,type) VALUES (?,?,?,?,"user")').run(name,email,password,city);
+  const info=db.prepare("INSERT INTO users (name,email,password,city,type) VALUES (?,?,?,?,'user')").run(name,email,password,city);
   res.json({ok:true,user:{id:info.lastInsertRowid,name,email,city}});
 });
 
